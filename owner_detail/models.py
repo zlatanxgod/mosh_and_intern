@@ -6,11 +6,18 @@ from django.forms import CharField
 
 class Owner(models.Model):
     name = models.CharField(max_length=255)
+
+ # The old way
+
     #mobile = models.CharField(max_length=10)
     # def __str__(self):
     #     return f'Owner ({ self.name})'
+
+# Meta class for defining the meta, pre sorting
     class Meta:
         ordering = ['name']
+# new Way
+
     def __str__(self) -> str:
         return self.name
 
@@ -24,7 +31,7 @@ class Number(models.Model):
 class Vehicle(models.Model):
     owner = models.ForeignKey(Owner,on_delete= models.CASCADE)
     MOdel = models.CharField(max_length=10)
-
+    
     def __str__(self):
         return f'{self.MOdel}'
 
