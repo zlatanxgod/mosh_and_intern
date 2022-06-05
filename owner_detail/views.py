@@ -9,12 +9,12 @@ from owner_detail.models import Owner
 # Create your views here.
 
 @api_view()
-def say_hello(request):
+def owner_list(request):
     # query_set =  Owner.objects.all()
     # #q_object = Owner.objects.get(pk = 2)
     # q_object = Owner.objects.filter(pk=2).first()
-    owner = Owner.objects.all()
-    serializer = serializers.OwnerSerializer(owner, many = True)
+    queryset = Owner.objects.all()
+    serializer = serializers.OwnerSerializer(queryset, many = True)
     return Response(serializer.data)
 
 @api_view()
