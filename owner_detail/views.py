@@ -1,7 +1,8 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
+from rest_framework import status
 from owner_detail import serializers
 from owner_detail.models import Owner
 #from .serializers import 
@@ -18,6 +19,6 @@ def say_hello(request):
 
 @api_view()
 def owner_detail(request, id):
-    owner = Owner.objects.get(pk = id)
+    owner = get_object_or_404(Owner, pk = id)
     serializer = serializers.OwnerSerializer(owner)
     return Response(serializer.data)
